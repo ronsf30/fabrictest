@@ -46,7 +46,7 @@ ENV PYTHON_ENVIRONMENT=Production
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:5000/health || exit 1
+  CMD curl -f http://localhost:5001/health || exit 1
 
 # Run as non-root user
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
@@ -76,7 +76,7 @@ spec:
       - name: app
         image: your-registry/fabric-python-backend:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 5001
         env:
         - name: PYTHON_ENVIRONMENT
           value: "Production"
@@ -98,13 +98,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 5000
+            port: 5001
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /ready
-            port: 5000
+            port: 5001
           initialDelaySeconds: 5
           periodSeconds: 5
         resources:

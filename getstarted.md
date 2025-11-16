@@ -71,13 +71,13 @@ Location: `Backend/python`
    CLIENT_SECRET=<secret>
    AUDIENCE=<audience>
    HOST=0.0.0.0
-   PORT=5000
+   PORT=5001
    WORKERS=1
    ```
 4. Run in development  
    - Windows/macOS: `cd Backend/python/src && python main.py`  
-   Alternate (reload): `PYTHONPATH=src uvicorn fabric_api.main:app --host 0.0.0.0 --port 5000 --reload`
-5. Health check: open http://localhost:5000/health
+   Alternate (reload): `PYTHONPATH=src uvicorn fabric_api.main:app --host 0.0.0.0 --port 5001 --reload`
+5. Health check: open http://localhost:5001/health
 6. (Optional) Docker: `cd Backend/python && docker compose up --build`
 
 ### Option B: .NET 8 backend
@@ -93,7 +93,7 @@ Location: `Backend/dotnet/src`
    dotnet run
    ```
    The pre-build manifest validation uses pwsh; if you need to skip it, run with `dotnet run /p:RunValidation=false`.
-4. Service listens on http://127.0.0.1:5000 (HTTPS on 5001 if configured).
+4. Service listens on http://127.0.0.1:5001 (HTTPS on 5002 if configured).
 
 ## 4) Frontend
 Location: `Frontend`
@@ -106,7 +106,7 @@ Location: `Frontend`
 2. Create env files (at least `.env.dev` for local dev):
    ```
    WORKLOAD_NAME=Org.YourWorkload
-   WORKLOAD_BE_URL=http://localhost:5000
+   WORKLOAD_BE_URL=http://localhost:5001
    DEV_AAD_CONFIG_AUDIENCE=<audience>
    DEV_AAD_CONFIG_APPID=<clientId>
    DEV_AAD_CONFIG_REDIRECT_URI=http://localhost:60006/close
@@ -127,8 +127,8 @@ Location: `tools/DevGatewayContainer`
 3. Follow terminal prompts to authenticate to Fabric. On Apple Silicon, ensure Rosetta is enabled in Docker Desktop for x86/amd64 images.
 
 ## 6) Quick verification
-- Backend (Python): `curl http://localhost:5000/health`
-- Backend (.NET): `curl http://127.0.0.1:5000/health`
+- Backend (Python): `curl http://localhost:5001/health`
+- Backend (.NET): `curl http://127.0.0.1:5001/health`
 - Frontend dev server: open http://127.0.0.1:60006 and verify bundle is served; check manifest endpoints above.
 
 ## 7) Troubleshooting

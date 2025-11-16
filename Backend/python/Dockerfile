@@ -43,10 +43,10 @@ ENV PYTHONPATH=/app
 
 # Health check 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:5000/health').read()" || exit 1
+  CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:5001/health').read()" || exit 1
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5001
 
 # Run the application 
 CMD ["python3", "src/main.py"]

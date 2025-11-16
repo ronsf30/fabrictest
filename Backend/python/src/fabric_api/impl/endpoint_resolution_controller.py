@@ -151,7 +151,7 @@ class EndpointResolutionController(BaseEndpointResolutionApi):
             base_url = f"{self.request.url.scheme}://{self.request.url.netloc}"
         else:
             # Fallback for testing or other contexts
-            base_url = "http://localhost:5000"
+            base_url = "http://localhost:5001"
             self.logger.warning("Request context not available, using fallback URL")
         
         # Add the workload API base path

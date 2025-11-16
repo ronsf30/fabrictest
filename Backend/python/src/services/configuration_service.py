@@ -18,7 +18,7 @@ class Environment(Enum):
 class ServerConfig:
     """Server configuration."""
     host: str = "0.0.0.0"
-    port: int = 5000
+    port: int = 5001
     workers: int = 1
     shutdown_timeout: int = 10
     force_shutdown_timeout: int = 15
@@ -244,7 +244,7 @@ class ConfigurationService:
         if server_section:
             self._server_config = ServerConfig(
                 host=server_section.get("Host", "0.0.0.0"),
-                port=int(server_section.get("Port", 5000)),
+                port=int(server_section.get("Port", 5001)),
                 workers=int(server_section.get("Workers", 1)),
                 shutdown_timeout=int(server_section.get("ShutdownTimeout", 10)),
                 force_shutdown_timeout=int(server_section.get("ForceShutdownTimeout", 15))
@@ -368,7 +368,7 @@ class ConfigurationService:
         """Get server port."""
         if self._server_config:
             return self._server_config.port
-        return 5000
+        return 5001
         
     def get_workers(self) -> int:
         """Get number of workers."""

@@ -70,7 +70,7 @@ AUDIENCE=your-audience
 
 # Server Configuration
 HOST=0.0.0.0
-PORT=5000
+PORT=5001
 WORKERS=1
 
 # SSL Configuration (Production)
@@ -108,10 +108,10 @@ cd src
 python main.py
 
 # Method 2: Using uvicorn with module path
-PYTHONPATH=src uvicorn fabric_api.main:app --host 0.0.0.0 --port 5000 --reload
+PYTHONPATH=src uvicorn fabric_api.main:app --host 0.0.0.0 --port 5001 --reload
 
 # Method 3: Using the simplified uvicorn command
-uvicorn main:app --host 0.0.0.0 --port 5000 --reload
+uvicorn main:app --host 0.0.0.0 --port 5001 --reload
 ```
 
 ### Production Mode
@@ -132,16 +132,16 @@ docker-compose up --build
 
 # Or build and run manually
 docker build -t fabric-python-backend .
-docker run -p 5000:5000 fabric-python-backend
+docker run -p 5001:5001 fabric-python-backend
 ```
 
 ## 📚 API Documentation
 
 Once running, access the interactive API documentation:
 
-- **OpenAPI/Swagger UI**: http://localhost:5000/docs
-- **ReDoc**: http://localhost:5000/redoc  
-- **OpenAPI Schema**: http://localhost:5000/openapi.json
+- **OpenAPI/Swagger UI**: http://localhost:5001/docs
+- **ReDoc**: http://localhost:5001/redoc  
+- **OpenAPI Schema**: http://localhost:5001/openapi.json
 
 ### Core API Endpoints
 
@@ -320,7 +320,7 @@ docker-compose up --build
 
 # Using Docker directly
 docker build -t fabric-backend .
-docker run -p 5000:5000 \
+docker run -p 5001:5001 \
   -e PUBLISHER_TENANT_ID=your-tenant-id \
   -e CLIENT_ID=your-client-id \
   -e CLIENT_SECRET=your-client-secret \
@@ -343,7 +343,7 @@ See [`deployment.md`](deployment.md) for detailed production deployment instruct
 |---------|-------------|---------|
 | `PYTHON_ENVIRONMENT` | Environment mode | `Development` |
 | `HOST` | Server host | `0.0.0.0` |
-| `PORT` | Server port | `5000` |
+| `PORT` | Server port | `5001` |
 | `WORKERS` | Worker processes | `1` |
 | `DEBUG` | Debug mode | `false` |
 | `LOG_LEVEL` | Logging level | `Information` |
@@ -423,9 +423,9 @@ python tools/manifest_package_generator.py
 
 **Port Already in Use**
 ```bash
-# Find process using port 5000
-lsof -i :5000  # macOS/Linux
-netstat -ano | findstr :5000  # Windows
+# Find process using port 5001
+lsof -i :5001  # macOS/Linux
+netstat -ano | findstr :5001  # Windows
 
 # Kill the process and restart
 ```
