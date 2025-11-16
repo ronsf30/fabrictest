@@ -399,3 +399,9 @@ FodyWeavers.xsd
 
 # Fabric DevGateway Container Environment Files
 /tools/DevGatewayContainer/.env
+
+# Virtual env
+venv/
+
+# Frontend build
+tools/
