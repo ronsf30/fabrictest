@@ -4,9 +4,9 @@
   "description": "Microsoft Fabric - Frontend Developer Sample App",
   "main": "index.js",
   "scripts": {
-    "start": "node validation/generate-nuspec.js && node validation/build-nuget.js && env-cmd -f .env.dev webpack serve --open --config ./tools/webpack.config.js",
-    "build:test": "env-cmd -f .env.test webpack --config ./tools/webpack.config.js",
-    "build:prod": "env-cmd -f .env.prod webpack --config ./tools/webpack.config.js"
+    "start": "node validation/generate-nuspec.js && node validation/build-nuget.js && env-cmd -f .env.dev webpack serve --open --config ./webpack.config.js",
+    "build:test": "env-cmd -f .env.test webpack --config ./webpack.config.js",
+    "build:prod": "env-cmd -f .env.prod webpack --config ./webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -35,10 +35,11 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.0.0",
     "css-loader": "^6.5.1",
-    "nuget-bin": "^4.0.0",
     "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.1",
     "env-cmd": "^10.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "nuget-bin": "^4.0.0",
     "sass": "^1.79.3",
     "sass-loader": "^16.0.2",
     "style-loader": "^3.3.1",
