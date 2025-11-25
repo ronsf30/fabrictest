@@ -1,6 +1,6 @@
 services:
   dev-gateway:
-    image: dev-gateway:v1.2
+    image: dev-gateway:v1.6
     build:
       context: .
       dockerfile: Dockerfile

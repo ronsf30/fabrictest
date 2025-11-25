@@ -30,7 +30,7 @@ async function generateNuspec() {
     const otherJsonFiles = allFiles
       .filter(file => file.endsWith('.json') && file !== 'Product.json')
       .map(file => path.join(packageDir, file));
-    
+
     // Combine both lists
     const files = [...otherJsonFiles, ...assetFiles];
 
@@ -40,6 +40,10 @@ async function generateNuspec() {
       const relativePath = path.relative(packageDir, file);
       fileEntries += `    <file src="../Package/${relativePath}" target="FE/${relativePath.replace(/\\/g, '/')}" />\n`;
     });
+
+    // Add WorkloadManifest.xml from Backend
+    const manifestPath = path.resolve(__dirname, '../../Backend/python/src/Packages/manifest/WorkloadManifest.xml');
+    fileEntries += `    <file src="${manifestPath}" target="WorkloadManifest.xml" />\n`;
 
     // Read template
     const template = await fs.readFile(nuspecTemplatePath, 'utf-8');

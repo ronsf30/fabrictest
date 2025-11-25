@@ -22,6 +22,7 @@
     <file src="../Package/assets\images\SampleWorkload2.png" target="FE/assets/images/SampleWorkload2.png" />
     <file src="../Package/assets\locales\en-US\translations.json" target="FE/assets/locales/en-US/translations.json" />
     <file src="../Package/assets\locales\es\translations.json" target="FE/assets/locales/es/translations.json" />
+    <file src="C:\Users\Wall-E\Documents\FabricProject\fabrictest\Backend\python\src\Packages\manifest\WorkloadManifest.xml" target="WorkloadManifest.xml" />
 
   </files>
 </package>
