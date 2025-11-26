@@ -26,7 +26,7 @@ from core.service_registry import get_service_registry
 from fabric_api.apis.endpoint_resolution_api import router as EndpointResolutionApiRouter
 from fabric_api.apis.item_lifecycle_api import router as ItemLifecycleApiRouter
 from fabric_api.apis.jobs_api import router as JobsApiRouter
-from impl.fabric_extension_controller import router as fabric_extension_router
+
 from impl.onelake_controller import router as onelake_controller
 from impl.lakehouse_controller import router as lakehouse_controller
 
@@ -275,7 +275,7 @@ def create_app() -> FastAPI:
     app.include_router(EndpointResolutionApiRouter)
     app.include_router(ItemLifecycleApiRouter)
     app.include_router(JobsApiRouter)
-    app.include_router(fabric_extension_router)
+
     app.include_router(onelake_controller)
     app.include_router(lakehouse_controller)
     
