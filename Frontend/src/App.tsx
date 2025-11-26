@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import { History } from "history";
 import { WorkloadClientAPI } from "@ms-fabric/workload-client";
+import { MarkdownEditor } from "./components/MarkdownEditor/MarkdownEditor";
 
 /*
     Add your Item Editor in the Route section of the App function below
@@ -26,10 +27,9 @@ export interface ContextProps {
 export function App({ history, workloadClient }: AppProps) {
     return <Router history={history}>
         <Switch>
-            {/* Add your workload editor path here */}
-            {/* <Route path="/your-route">
-                 <YourComponent />
-            </Route> */}
+            <Route path="/markdown-editor/:itemObjectId">
+                <MarkdownEditor workloadClient={workloadClient} itemObjectId={window.location.pathname.split('/').pop() || ''} />
+            </Route>
         </Switch>
     </Router>;
 }

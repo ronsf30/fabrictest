@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WorkloadDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/fabric/2023/workload/definition">
-  <Name>Org.WorkloadSample</Name>
+  <Name>Org.MarkdownDoc</Name>
   <AADAppId>93b0a4b5-c36d-4035-ae92-d762936e79d6</AADAppId>
   <Version>1.0.0.0</Version>
-  <DisplayName>Workload Python</DisplayName>
-  <Description>Workload de prueba en Python</Description>
+  <DisplayName>Markdown Document</DisplayName>
+  <Description>Carga de trabajo para gestionar documentos Markdown en OneLake</Description>
   <DevServiceUrl>http://127.0.0.1:5001</DevServiceUrl>
   <Items>
     <Item>
-      <Name>Org.WorkloadSample.Item</Name>
+      <Name>Org.MarkdownDoc.Item</Name>
     </Item>
   </Items>
 </WorkloadDefinition>

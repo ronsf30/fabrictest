@@ -1,0 +1,30 @@
+{
+  "name": "MarkdownDocItem",
+  "displayName": "Markdown Document",
+  "displayNamePlural": "Markdown Documents",
+  "version": "1.0.0",
+  "editor": {
+    "path": "/markdown-editor"
+  },
+  "icon": {
+    "name": "assets/images/execute.png"
+  },
+  "activeIcon": {
+    "name": "assets/images/execute.png"
+  },
+  "contextMenuItems": [],
+  "quickActionItems": [],
+  "supportedInMonitoringHub": true,
+  "supportedInDatahubL1": true,
+  "createItemDialogConfig": {
+    "onCreationFailure": {
+      "action": "item.onCreationFailure"
+    },
+    "onCreationSuccess": {
+      "action": "item.onCreationSuccess"
+    }
+  },
+  "oneLakeCatalogCategory": [
+    "Process"
+  ]
+}

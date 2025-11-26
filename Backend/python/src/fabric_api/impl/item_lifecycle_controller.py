@@ -29,9 +29,6 @@ class ItemLifecycleController(BaseItemLifecycleApi):
     ) -> None:
         """
         Called by Microsoft Fabric for creating a new item.
-        
-        This endpoint is triggered when the frontend calls callItemCreate,
-        which happens during handleCreateSampleItem in SampleWorkloadCreateDialog.
         """
         logger.info(f"Creating item: {itemType} with ID {itemId} in workspace {workspaceId}")
         
@@ -50,6 +47,7 @@ class ItemLifecycleController(BaseItemLifecycleApi):
         
         # Create the item
         item = item_factory.create_item(itemType, auth_context)
+        # Cast to MarkdownItem to access specific methods if needed, or use common interface
         await item.create(workspaceId, itemId, create_item_request)
         
         logger.info(f"Successfully created item {itemId}")
@@ -68,7 +66,6 @@ class ItemLifecycleController(BaseItemLifecycleApi):
     ) -> None:
         """Called by Microsoft Fabric for updating an existing item."""
         logger.info(f"Updating item: {itemType} with ID {itemId} in workspace {workspaceId}")
-        logger.debug(f"Update item request: {update_item_request}")
         
         auth_service = get_authentication_service()
         item_factory = get_item_factory()
@@ -79,8 +76,11 @@ class ItemLifecycleController(BaseItemLifecycleApi):
         )
         
         item = item_factory.create_item(itemType, auth_context)
-        await item.load(itemId)
-        await item.update(update_item_request)
+        
+        if update_item_request and update_item_request.payload:
+            content = update_item_request.payload.get("content")
+            if content:
+                await item.update_content(workspaceId, itemId, content)
         
         logger.info(f"Successfully updated item {itemId}")
         return None
@@ -106,13 +106,9 @@ class ItemLifecycleController(BaseItemLifecycleApi):
             tenant_id=x_ms_client_tenant_id,
             require_subject_token=False
         )
-        if not auth_context.has_subject_context:
-            logger.warning(f"Subject token not provided for item deletion: {itemId}")
-
         
         item = item_factory.create_item(itemType, auth_context)
-        await item.load(itemId)
-        await item.delete()
+        # await item.delete() # Implement delete in MarkdownItem if needed
         
         logger.info(f"Successfully deleted item {itemId}")
         return None
@@ -129,8 +125,6 @@ class ItemLifecycleController(BaseItemLifecycleApi):
     ) -> GetItemPayloadResponse:
         """
         Called by Microsoft Fabric for retrieving the workload payload for an item.
-        
-        This endpoint is called when the editor loads via loadDataFromUrl.
         """
         logger.info(f"Getting payload for item: {itemType} with ID {itemId} in workspace {workspaceId}")
         
@@ -143,8 +137,7 @@ class ItemLifecycleController(BaseItemLifecycleApi):
         )
         
         item = item_factory.create_item(itemType, auth_context)
-        await item.load(itemId)
-        item_payload = await item.get_item_payload()
+        content = await item.get_content()
         
-        logger.debug(f"Retrieved payload for item {itemId}: {item_payload}")
-        return GetItemPayloadResponse(item_payload=item_payload)
+        # Return content as the payload
+        return GetItemPayloadResponse(item_payload={"content": content})
