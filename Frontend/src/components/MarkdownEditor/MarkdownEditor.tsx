@@ -4,7 +4,6 @@ import MarkdownIt from 'markdown-it';
 import {
     makeStyles,
     shorthands,
-    Button,
     Textarea,
     Toolbar,
     ToolbarButton,

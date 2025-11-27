@@ -9,16 +9,15 @@ const outputDir = path.resolve(__dirname, ""); // Ensure the path is resolved co
 const packageName = "ManifestPackageRelease";
 
 async function buildNugetPackage() {
-  try
-  {
+  try {
     // Ensure output directory exists
     await fs.mkdir(outputDir, { recursive: true });
 
     const nuspecPath = path.join(outputDir, `${packageName}.nuspec`);
 
-    // Use local NuGet CLI
-    const nugetPath = path.join(path.resolve(__dirname, "../node_modules/"), ".bin", "nuget");
-    const { stdout, stderr } = await execAsync(`${nugetPath} pack "${nuspecPath}" -OutputDirectory "${outputDir}" -Verbosity detailed"`);
+    // Use local NuGet CLI with mono
+    const nugetExePath = path.join(path.resolve(__dirname, "../node_modules/nuget-bin/nuget.exe"));
+    const { stdout, stderr } = await execAsync(`mono "${nugetExePath}" pack "${nuspecPath}" -OutputDirectory "${outputDir}" -Verbosity detailed`);
 
     if (stderr) console.error(`⚠️ NuGet stderr: ${stderr}`);
     console.log(`📦 NuGet output: ${stdout}`);

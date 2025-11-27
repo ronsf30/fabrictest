@@ -51,9 +51,19 @@ console.log('process.env.WORKLOAD_NAME: ' + process.env.WORKLOAD_NAME);
 console.log('process.env.WORKLOAD_BE_URL: ' + process.env.WORKLOAD_BE_URL);
 console.log('**************************************');
 
-bootstrap({
-    initializeWorker: (params) =>
-        import('./index.worker').then(({ initialize }) => initialize(params)),
-    initializeUI: (params) =>
-        import('./index.ui').then(({ initialize }) => initialize(params)),
-});
+if (window === window.parent) {
+    // Standalone mode (local dev)
+    import('./index.ui').then(({ initialize }) => initialize({
+        environmentName: 'Local',
+        bootstrapPath: '',
+        isStandalone: true,
+    } as any));
+} else {
+    // Fabric hosted mode
+    bootstrap({
+        initializeWorker: (params) =>
+            import('./index.worker').then(({ initialize }) => initialize(params)),
+        initializeUI: (params) =>
+            import('./index.ui').then(({ initialize }) => initialize(params)),
+    });
+}

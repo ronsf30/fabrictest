@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router, Switch, Redirect } from "react-router-dom";
 import { History } from "history";
 import { WorkloadClientAPI } from "@ms-fabric/workload-client";
 import { MarkdownEditor } from "./components/MarkdownEditor/MarkdownEditor";
@@ -19,6 +19,10 @@ export interface PageProps {
 
 }
 
+export interface SharedState {
+    message: string;
+}
+
 export interface ContextProps {
     itemObjectId?: string;
     workspaceObjectId?: string
@@ -29,6 +33,9 @@ export function App({ history, workloadClient }: AppProps) {
         <Switch>
             <Route path="/markdown-editor/:itemObjectId">
                 <MarkdownEditor workloadClient={workloadClient} itemObjectId={window.location.pathname.split('/').pop() || ''} />
+            </Route>
+            <Route exact path="/">
+                <Redirect to="/markdown-editor/test-item" />
             </Route>
         </Switch>
     </Router>;
