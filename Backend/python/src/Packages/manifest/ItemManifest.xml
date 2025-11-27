@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ItemDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/fabric/2023/workload/definition">
+  <Name>Org.MarkdownDoc.Item</Name>
+  <DisplayName>Markdown Doc</DisplayName>
+  <Description>Un documento Markdown</Description>
+  <JobType>Org.MarkdownDoc.Item.Job</JobType>
+  <Frontend>Frontend</Frontend>
+</ItemDefinition>
